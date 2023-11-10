@@ -8,17 +8,24 @@ services:
     dockerfilePath: ./vote/Dockerfile
 
   # Redis service from docker-stack.yml with IP allow list
-  # - type: redis
-  #   name: redis-database
-  #   ipAllowList: # required - allow external connections from everywhere
-  #     - source: 0.0.0.0/0
-  #       description: everywhere
+  - type: redis
+    name: redis-database
+    ipAllowList:
+      - 0.0.0.0/0  # Example IP range, adjust as necessary
 
-  # # Result service from docker-compose.images.yml
-  # - type: web
-  #   name: result-service
-  #   env: docker
-  #   dockerfilePath: ./result/Dockerfile
+  # PostgreSQL service from docker-stack.yml
+  -  name: postgres-database
+    envVars:
+      - key: POSTGRES_USER
+        value: postgres
+      - key: POSTGRES_PASSWORD
+        value: postgres
+
+  # Result service from docker-compose.images.yml
+  - type: web
+    name: result-service
+    env: docker
+    dockerfilePath: ./result/Dockerfile
 
 databases:
   - name: postgres-database
