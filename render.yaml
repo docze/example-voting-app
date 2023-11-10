@@ -1,0 +1,49 @@
+
+services:
+  # Service corresponding to the "vote" service in Docker Compose
+  - type: web
+    name: vote-service
+    env: docker
+    buildCommand: docker build --target dev -t vote-service ./vote
+    startCommand: docker run -p 10000:80 vote-service
+    healthCheckPath: /
+    envVars:
+      - key: REDIS_URL
+        fromDatabase:
+          name: redis-database
+          property: connectionString
+    disk:
+      name: vote-service-disk
+      mountPath: /usr/local/app
+      sizeGB: 10
+
+  # Redis service from docker-stack.yml
+  - type: redis
+    name: redis-database
+
+  # PostgreSQL service from docker-stack.yml
+  - type: postgres
+    name: postgres-database
+    envVars:
+      - key: POSTGRES_USER
+        value: postgres
+      - key: POSTGRES_PASSWORD
+        value: postgres
+
+  # Result service from docker-compose.images.yml
+  - type: web
+    name: result-service
+    env: docker
+    dockerfilePath: ./result/Dockerfile
+    startCommand: docker run -p 10001:80 dockersamples/examplevotingapp_result
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: postgres-database
+          property: connectionString
+
+databases:
+  - name: redis-database
+    type: redis
+  - name: postgres-database
+    type: postgres
