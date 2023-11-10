@@ -9,10 +9,9 @@ services:
     name: redis-service
     env: docker
     dockerfilePath: "./path/to/RedisDockerfile" 
-    ipAllowList:
-      - "0.0.0.0/0"
-        description: everywhere
-
+    ipAllowList: # required
+          - source: 0.0.0.0/0
+            description: everywhere
   - type: web
     name: result-service
     env: docker
