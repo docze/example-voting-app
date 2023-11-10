@@ -16,7 +16,12 @@ services:
       name: vote-service-disk
       mountPath: /usr/local/app
       sizeGB: 10
-      
+
+  # Redis service from docker-stack.yml
+  - type: redis
+    name: redis-database
+
+
   # Result service from docker-compose.images.yml
   - type: web
     name: result-service
@@ -28,3 +33,6 @@ services:
         fromDatabase:
           name: postgres-database
           property: connectionString
+
+databases:
+  - name: postgres-database
