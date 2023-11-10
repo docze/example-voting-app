@@ -1,20 +1,20 @@
 
 services:
-  - type: web
-    name: vote-service
-    env: docker
-    buildCommand: "docker build --target dev -t vote-service ./vote"
-    dockerfilePath: "./vote/Dockerfile"
+#  - type: web
+#    name: vote-service
+#    env: docker
+#    buildCommand: "docker build --target dev -t vote-service ./vote"
+#    dockerfilePath: "./vote/Dockerfile"
 
   - type: redis
     name: redis-service
     ipAllowList:
           - source: 0.0.0.0/0
             description: everywhere
-  - type: web
-    name: result-service
-    env: docker
-    dockerfilePath: "./result/Dockerfile"
+#  - type: web
+#    name: result-service
+#    env: docker
+#    dockerfilePath: "./result/Dockerfile"
 
 databases:
   - name: postgres-database
