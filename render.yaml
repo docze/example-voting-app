@@ -13,15 +13,6 @@ services:
     ipAllowList:
       - 0.0.0.0/0  # Example IP range, adjust as necessary
 
-  # PostgreSQL service from docker-stack.yml
-  - type: postgres
-    name: postgres-database
-    envVars:
-      - key: POSTGRES_USER
-        value: postgres
-      - key: POSTGRES_PASSWORD
-        value: postgres
-
   # Result service from docker-compose.images.yml
   - type: web
     name: result-service
@@ -29,7 +20,4 @@ services:
     dockerfilePath: ./result/Dockerfile
 
 databases:
-  - name: redis-database
-    type: redis
   - name: postgres-database
-    type: postgres
