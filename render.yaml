@@ -6,7 +6,7 @@ services:
     buildCommand: "docker build --target dev -t vote-service ./vote"
     dockerfilePath: "./vote/Dockerfile"
 
-  - type: web
+  - type: redis
     name: redis-service
     env: docker
     dockerfilePath: "./path/to/RedisDockerfile" 
