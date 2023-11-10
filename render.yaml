@@ -10,8 +10,9 @@ services:
   # Redis service from docker-stack.yml with IP allow list
   - type: redis
     name: redis-database
-    ipAllowList:
-      - 0.0.0.0/0  # Example IP range, adjust as necessary
+    ipAllowList: # required - allow external connections from everywhere
+      - source: 0.0.0.0/0
+        description: everywhere
 
   # Result service from docker-compose.images.yml
   - type: web
