@@ -20,10 +20,3 @@ services:
 
 databases:
   - name: postgres-database
-    type: postgres
-    properties:
-      envVars:
-        - key: POSTGRES_USER
-          value: "postgres"
-        - key: POSTGRES_PASSWORD
-          value: "postgres"
