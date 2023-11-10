@@ -1,3 +1,4 @@
+
 services:
   - type: web
     name: vote-service
@@ -9,7 +10,7 @@ services:
     name: redis-service
     env: docker
     dockerfilePath: "./path/to/RedisDockerfile" 
-    ipAllowList: # required
+    ipAllowList:
           - source: 0.0.0.0/0
             description: everywhere
   - type: web
