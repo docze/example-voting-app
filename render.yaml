@@ -11,6 +11,7 @@ services:
     dockerfilePath: "./path/to/RedisDockerfile" 
     ipAllowList:
       - "0.0.0.0/0"
+        description: everywhere
 
   - type: web
     name: result-service
