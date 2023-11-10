@@ -16,20 +16,7 @@ services:
       name: vote-service-disk
       mountPath: /usr/local/app
       sizeGB: 10
-
-  # Redis service from docker-stack.yml
-  - type: redis
-    name: redis-database
-
-  # PostgreSQL service from docker-stack.yml
-  - type: postgres
-    name: postgres-database
-    envVars:
-      - key: POSTGRES_USER
-        value: postgres
-      - key: POSTGRES_PASSWORD
-        value: postgres
-
+      
   # Result service from docker-compose.images.yml
   - type: web
     name: result-service
@@ -41,9 +28,3 @@ services:
         fromDatabase:
           name: postgres-database
           property: connectionString
-
-databases:
-  - name: redis-database
-    type: redis
-  - name: postgres-database
-    type: postgres
